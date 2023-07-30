@@ -1,0 +1,9 @@
+version: '3'
+services:
+  jupyter:
+    build: . # 現在のディレクトリのDockerfileを使用
+    ports: 
+      - "8888:8888" # ホスト:コンテナのポートのマッピング, JupyterNotebookはデフォルトで8080番
+    volumes:
+      - ./workspace:/home/jovyan/work # ホスト:コンテナのマッピング. ホストのカレントディレクトリをJupyterの作業ディレクトリとしてマウント
+    command: start-notebook.sh --NotebookApp.token='' # セキュリティリスクより、ローカルの場合のみこの設定を利用すること
